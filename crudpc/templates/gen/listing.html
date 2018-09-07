@@ -1,0 +1,61 @@
+	{% extends 'base.html'%}
+
+
+	{% block content %}
+	<div class="album py-5 bg-light">
+		<div class="container">
+
+
+			<div class="col-auto rounded bg-info pb-1 pl-1 pt-2 mb-4">
+				<h2 class = "ml-5">Filter PCs</h2>
+
+
+				<form action="{% url 'listing_generic' %}" method="get">
+					{% for form in forms %}
+					{{ form.as_p }}
+					{% endfor %}
+					<input type="submit" value="Filter">
+				</form>
+			</div>
+
+
+			<form action="{% url 'add' %}">
+
+				<div class="col-md-4">
+					<div class="card mb-4 shadow-sm">
+						<button type="submit" class="btn btn-primary">Add new PC</button>
+						
+					</div>
+				</div>
+			</form>
+
+			
+			<div class="row">
+				{% for pc in object_list %}
+				<div class="col-md-4">
+					<div class="card mb-4 shadow-sm">
+						<img class="card-img-top" src="{{ pc.photo.url }}" alt="Card image cap">
+						<div class="card-body">
+							<p class="card-text">{{ pc.html_describe }}</p>
+
+
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<form action = "{% url 'edit' pc.pk %}" method = "get">
+										<button type="submit" class="btn btn-sm btn-outline-secondary">Edit</button>
+									</form>
+									<form action = "{% url 'remove' pc.pk %}" method = "get">
+										<button type="submit" class="btn btn-sm btn-outline-secondary">Remove</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			
+
+		</div>
+	</div>
+	{% endblock %}
