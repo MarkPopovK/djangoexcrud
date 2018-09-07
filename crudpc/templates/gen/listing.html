@@ -1,4 +1,4 @@
-	{% extends 'base.html'%}
+	{% extends 'gen/base.html'%}
 
 
 	{% block content %}
@@ -10,7 +10,7 @@
 				<h2 class = "ml-5">Filter PCs</h2>
 
 
-				<form action="{% url 'listing_generic' %}" method="get">
+				<form action="{% url 'listing' %}" method="get">
 					{% for form in forms %}
 					{{ form.as_p }}
 					{% endfor %}

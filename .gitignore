@@ -24,6 +24,7 @@ media
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+# todo.txt
 
 # Generated files
 .idea/**/contentModel.xml
@@ -123,3 +124,6 @@ Temporary Items
 
 
 # End of https://www.gitignore.io/api/macos
+
+
+

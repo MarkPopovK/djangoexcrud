@@ -1,0 +1,30 @@
+topics from https://docs.djangoproject.com/en/2.1/topics/
+
+--- no idea how it works
++-- used it and it kinda works
+++- feel familiar with it
++++ learned thoroughly
+
+
+
++-- models and databases
++-- handling http requests
++-- working with forms
++-- templates
++-- testing
++-- django settings
+--- class-based views
+--- migrations
+--- managing files
+--- user auth
+--- cache framework
+--- conditional view processing
+--- emails
+--- internalization/localization
+--- logging
+--- pagination
+--- security
+--- performance & optimization
+--- serializing django objects
+--- signals
+--- rest framework

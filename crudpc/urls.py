@@ -14,19 +14,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.urls import path
+from django.urls import path, reverse, reverse_lazy
 from . import views, views_generic
-
+from .models import *
 
 urlpatterns = [
-    #path('', views.show_listing, name = 'listing'),
-    #path('edit/<int:cid>', views.edit, name = 'edit'),
-    #path('remove/<int:cid>', views.remove, name = 'remove'),
-    #path('add/', views.add, name = 'add'),
+    # path('', views.show_listing, name = 'listing'),
+    # path('edit/<int:cid>', views.edit, name = 'edit'),
+    # path('remove/<int:cid>', views.remove, name = 'remove'),
+    # path('add/', views.add, name = 'add'),
+    path('gen/', views_generic.ShowListing.as_view(model=Computer), name='listing'),
 
-    path('gen/', views_generic.show_listing.as_view(), name = 'listing_generic'),
-    #path('gen/edit/<int:cid>', views_generic.edit, name = 'edit_generic'),
-    #path('gen/remove/<int:cid>', views_generic.remove, name = 'remove_generic'),
-    #path('gen/add/', views_generic.add, name = 'add_generic'),
+    path('gen/edit/<int:pk>', views_generic.Edit.as_view(
+        model=Computer,
+        success_url=reverse_lazy('listing')), name='edit'),
+
+    path('gen/remove/<int:pk>', views_generic.Remove.as_view(
+        model=Computer,
+        success_url=reverse_lazy('listing')), name='remove'),
+
+    path('gen/add/', views_generic.Add.as_view(
+        model=Computer,
+        success_url=reverse_lazy('listing')), name='add'),
 ]
-
