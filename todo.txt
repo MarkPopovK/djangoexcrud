@@ -3,19 +3,21 @@ topics from https://docs.djangoproject.com/en/2.1/topics/
 --- no idea how it works
 +-- used it and it kinda works
 ++- feel familiar with it
-+++ learned thoroughly
++++ learned thoroughly including the source codes
 
 
 
 +-- models and databases
 +-- handling http requests
 +-- working with forms
+        couldn't get multiple forms into FormView, apparently it only supports one form at a time?
+        didn't really understand the mixins yet, but seems like it's a kind of multiple inheritance
 +-- templates
 +-- testing
 +-- django settings
---- class-based views
---- migrations
---- managing files
++-- class-based views
++-- migrations
++-- managing files
 --- user auth
 --- cache framework
 --- conditional view processing

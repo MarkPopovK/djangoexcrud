@@ -8,6 +8,9 @@ class Processor(models.Model):
     def __str__(self):
         return f'{self.model} ({self.speed}MHz)'
 
+    def html_describe(self):
+        return __str__(self)
+
 
 class RAM(models.Model):
     model = models.CharField(max_length=100)
@@ -15,6 +18,9 @@ class RAM(models.Model):
 
     def __str__(self):
         return f'{self.model} ({self.speed}MHz)'
+
+    def html_describe(self):
+        return __str__(self)
 
 
 class Disk(models.Model):
@@ -26,6 +32,9 @@ class Disk(models.Model):
 
     def __str__(self):
         return f'{self.dtype}'
+
+    def html_describe(self):
+        return __str__(self)
 
 
 class Computer(models.Model):

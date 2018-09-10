@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
+from django.views.generic import RedirectView
 from django.urls import path, reverse, reverse_lazy
 from . import views, views_generic
 from .models import *
@@ -23,16 +23,14 @@ urlpatterns = [
     # path('edit/<int:cid>', views.edit, name = 'edit'),
     # path('remove/<int:cid>', views.remove, name = 'remove'),
     # path('add/', views.add, name = 'add'),
+    path('', RedirectView.as_view(url=reverse_lazy('listing'))),
     path('gen/', views_generic.ShowListing.as_view(model=Computer), name='listing'),
-
     path('gen/edit/<int:pk>', views_generic.Edit.as_view(
         model=Computer,
         success_url=reverse_lazy('listing')), name='edit'),
-
     path('gen/remove/<int:pk>', views_generic.Remove.as_view(
         model=Computer,
         success_url=reverse_lazy('listing')), name='remove'),
-
     path('gen/add/', views_generic.Add.as_view(
         model=Computer,
         success_url=reverse_lazy('listing')), name='add'),

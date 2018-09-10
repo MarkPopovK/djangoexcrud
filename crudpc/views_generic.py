@@ -1,20 +1,26 @@
-from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
-from django.http import Http404
+from django.urls import reverse_lazy
 from .forms import ComputerForm, ProcessorForm, RAMForm, DiskForm
 from .models import Computer, Processor, RAM, Disk
 
 
-class ShowListing(generic.ListView):
+class ShowListing(generic.ListView, generic.FormView):
     model = Computer
+    form_class = ComputerForm
+    success_url = reverse_lazy('listing')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # context['forms'] = [
-        #     ProcessorForm(self.request.GET),
-        #     RAMForm(self.request.GET),
-        #     DiskForm(self.request.GET),]
-        return context
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        cpu = self.request.GET.get('pc-processor', '')
+        ram = self.request.GET.get('pc-ram', '')
+        disk = self.request.GET.get('pc-disk', '')
+        if cpu:
+            queryset = queryset.filter(processor=cpu)
+        if ram:
+            queryset = queryset.filter(ram=ram)
+        if disk:
+            queryset = queryset.filter(disk=disk)
+        return queryset
 
 
 class Add(generic.CreateView):
@@ -29,6 +35,3 @@ class Edit(generic.UpdateView):
 
 class Remove(generic.DeleteView):
     model = Computer
-
-
-

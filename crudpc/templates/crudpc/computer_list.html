@@ -6,6 +6,15 @@
 <div class="album py-5 bg-light">
     <div class="container">
 
+
+        <div class="col-auto rounded bg-info pb-1 pl-1 pt-2 mb-4">
+            <h2 class="ml-5">Filter PCs</h2>
+            <form method="get">
+                <p>{{ form.as_p }}</p>
+                <input type="submit" value="Confirm">
+            </form>
+        </div>
+
         <div class="row">
             {% for pc in object_list %}
             <div class="col-md-4">
