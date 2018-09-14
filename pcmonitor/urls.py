@@ -20,8 +20,9 @@ from django.conf import settings
 from django.views.generic import RedirectView
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('monitor/', include('crudpc.urls')),
-    path('', RedirectView.as_view(url=reverse_lazy('listing'))),
+    path('track/', include('trackr.urls')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

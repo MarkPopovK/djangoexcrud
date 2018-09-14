@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+
+<div class="card-deck mb-1 text-center">
+
+    <div class="card mb-3 shadow-sm">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ start|yesno:'Stopped,Started' }} {{ lastpoint.date|naturaltime }}
+
+
+            </h4>
+        </div>
+        <div class="card-body">
+            <form action="{% url 'trackr' %}" method="post" class="pb-1">
+                {% csrf_token %}
+                <input id=b1 type="Submit" name="start" value="{{ start|yesno:'Start,Stop' }}" class="btn btn-lg btn-primary"/>
+            </form>
+
+
+            <input id=b2 type="Submit" value="Refresh" class="btn btn-lg btn-secondary"
+                   onClick="window.location.reload()"/>
+
+
+            <h1 class="card-title pricing-card-title">
+                {{ elapsed }}
+                <small class="text-muted"> worked today</small>
+                <br>
+                <small class="text-muted">{{ rested }} rested today</small>
+            </h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">From</th>
+                    <th scope="col">To</th>
+                    <th scope="col">Span</th>
+                </tr>
+                </thead>
+                {% for starttime, endtime, segment in segments %}
+                <tr>
+                    <td>{{ starttime }}</td>
+                    <td>{{ endtime }}</td>
+                    <td>{{ segment }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+let elapsedTotal = parseInt({{elapsedsec}});
+let ratioDone;
+
+
+//setInterval(function(){
+//    elapsedTotal += 1;
+    ratioDone = (100 * elapsedTotal / (8*60*60)).toFixed(2);
+    document.title = "TR: {{ start|yesno:'Resting,Working' }} "+ratioDone+"%";
+    //}, 2 * 1000);
+
+
+</script>
+
+{% endblock %}
+
+
+
