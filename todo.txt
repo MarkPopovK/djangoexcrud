@@ -18,15 +18,15 @@ topics from https://docs.djangoproject.com/en/2.1/topics/
 ++-- migrations
 ++-- managing files
 ++-- user auth
-    learn custom user model
+    need to learn custom user model
 ++-- serializing django objects
 ++-- rest framework
 +-- cache framework
 +-- emails
---- security
++-- security
++-- internalization/localization
++-- logging
 --- conditional view processing
---- internalization/localization
---- logging
 --- performance & optimization
 --- signals
 --- pagination

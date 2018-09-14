@@ -41,7 +41,7 @@ def trackr(request):
     else:
         data['lastpoint'] = 'no points yet'
         data['start'] = True
-        data['elapsed'] = 'no time elapsed'
+        data['elapsed'] = 'no time worked'
     print(time.time()-t, 'sec')
     return render(request, 'home.html', data)
 
