@@ -22,7 +22,7 @@ from .models import Computer, Processor, RAM, Disk
 
 
 class ComputerForm(ModelForm):
-    prefix = 'pc'
+    #prefix = 'pc'
 
     class Meta:
         model = Computer

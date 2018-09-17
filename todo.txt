@@ -27,6 +27,7 @@ topics from https://docs.djangoproject.com/en/2.1/topics/
 +-- internalization/localization
 +-- logging
 --- conditional view processing
---- performance & optimization
++-- performance & optimization
 --- signals
---- pagination
++-- pagination
+--- deployment

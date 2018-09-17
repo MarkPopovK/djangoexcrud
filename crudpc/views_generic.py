@@ -8,12 +8,13 @@ class ShowListing(generic.ListView, generic.FormView):
     model = Computer
     form_class = ComputerForm
     success_url = reverse_lazy('listing')
+    #prefix = 'pc'
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        cpu = self.request.GET.get('pc-processor', '')
-        ram = self.request.GET.get('pc-ram', '')
-        disk = self.request.GET.get('pc-disk', '')
+        cpu = self.request.GET.get('processor', '')
+        ram = self.request.GET.get('ram', '')
+        disk = self.request.GET.get('disk', '')
         if cpu:
             queryset = queryset.filter(processor=cpu)
         if ram:
@@ -21,6 +22,11 @@ class ShowListing(generic.ListView, generic.FormView):
         if disk:
             queryset = queryset.filter(disk=disk)
         return queryset
+
+    def get_initial(self):
+        self.initial = self.request.GET
+        return self.initial
+
 
 
 class Add(generic.CreateView):

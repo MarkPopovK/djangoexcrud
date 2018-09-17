@@ -2,7 +2,7 @@
 {% load humanize %}
 
 {% block content %}
-
+{% load static %}
 
 <div class="card-deck mb-1 text-center">
 
@@ -16,7 +16,8 @@
         <div class="card-body">
             <form action="{% url 'trackr' %}" method="post" class="pb-1">
                 {% csrf_token %}
-                <input id=b1 type="Submit" name="start" value="{{ start|yesno:'Start,Stop' }}" class="btn btn-lg btn-primary"/>
+                <input id=b1 type="Submit" name="start" value="{{ start|yesno:'Start,Stop' }}"
+                       class="btn btn-lg btn-primary"/>
             </form>
 
 
@@ -56,12 +57,20 @@
 let elapsedTotal = parseInt({{elapsedsec}});
 let ratioDone;
 
+w = new Worker("{% static "trackr/counter.js" %}");
 
-//setInterval(function(){
-//    elapsedTotal += 1;
-    ratioDone = (100 * elapsedTotal / (8*60*60)).toFixed(2);
-    document.title = "TR: {{ start|yesno:'Resting,Working' }} "+ratioDone+"%";
-    //}, 2 * 1000);
+w.onmessage = function(event){
+    elapsedTotal += 1;
+    ratioDone = (100 * elapsedTotal / (8*60*60)).toFixed(3);
+    document.title = ratioDone+"% {{ start|yesno:'Resting,Working' }}";
+};
+
+
+
+
+//timer();
+
+
 
 
 </script>

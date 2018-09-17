@@ -65,7 +65,6 @@ def signup(request):
 class PointList(rest_generics.ListCreateAPIView):
     queryset = TrackPoint.objects.all()
     serializer_class = PointSerializer
-
     def perform_create(self, serializer):
         serializer.save(date=timezone.now())
 
