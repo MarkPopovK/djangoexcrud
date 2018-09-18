@@ -1,0 +1,28 @@
+{% extends 'heroselect/base.html' %}
+
+{% block content %}
+<form enctype="multipart/form-data" action="{% url 'heroselect' %}" method="get">
+    <div class="row">
+
+        <div class="col-sm">
+            <h1>Radiant Team</h1>
+            {% for form in forms %}
+
+            {{ form.as_p }}
+
+            {% if forloop.counter0 == 4 %}
+        </div>
+        <div class="col-sm">
+            <h1>Dire Team</h1>
+            {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class = "pl-5">
+        <button type="submit" class="btn btn-lg btn-outline-secondary">Predict</button>
+        {% if prediction %} <h2> The probability is <strong>{{ prediction.probability }}</strong><br> {{ prediction.msg }}</h2> {% endif %}
+    </div>
+</form>
+{% endblock %}

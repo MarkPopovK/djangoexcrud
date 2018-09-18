@@ -25,4 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('monitor/', include('crudpc.urls')),
     path('track/', include('trackr.urls')),
+    path('heroselect/', include('heroselect.urls')),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

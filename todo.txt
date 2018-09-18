@@ -20,14 +20,15 @@ topics from https://docs.djangoproject.com/en/2.1/topics/
 ++-- user auth
     need to learn custom user model
 ++-- serializing django objects
+++-- custom django admin commands
 ++-- rest framework
-+-- cache framework
-+-- emails
-+-- security
-+-- internalization/localization
-+-- logging
---- conditional view processing
-+-- performance & optimization
---- signals
-+-- pagination
---- deployment
++--- cache framework
++--- emails
++--- security
++--- internalization/localization
++--- logging
+---- conditional view processing
++--- performance & optimization
+---- signals
++--- pagination
++--- deployment
