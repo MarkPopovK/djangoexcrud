@@ -21,6 +21,7 @@
     </div>
 
     <div class = "pl-5">
+        <hr>
         <button type="submit" class="btn btn-lg btn-outline-secondary">Predict</button>
         {% if prediction %} <h2> The probability is <strong>{{ prediction.probability }}</strong><br> {{ prediction.msg }}</h2> {% endif %}
     </div>

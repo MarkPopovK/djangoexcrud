@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import View, FormView
 from django.utils.datastructures import MultiValueDictKeyError
 from django.http import Http404
@@ -23,18 +23,20 @@ class Heroview(View):
                 radiant_team = [int(request.GET[f'r{n}-hero']) for n in range(1, 6)]
                 dire_team = [int(request.GET[f'd{n}-hero']) for n in range(1, 6)]
                 together = radiant_team + dire_team
-                repeats = []
+
                 if len(set(together)) < 10:
                     for each in together:
+                        hero = get_object_or_404(Hero, pk=each)
                         if together.count(each) > 1:
-                            repeats.append(Hero.objects.get(id=each).name)
-                    raise Http404("Need 10 UNIQUE heroes, repeated: " + ', '.join(repeats))
+                            raise Http404("Need 10 UNIQUE heroes, repeated: " + hero.name)
+
             except MultiValueDictKeyError as e:
                 raise Http404("Need all 10 heroes")
             except ValueError as e:
                 raise Http404("Hero IDs have to be numbers")
+
             else:
-                p = predict(radiant = radiant_team, dire = dire_team)
+                p = predict(radiant=radiant_team, dire=dire_team)
                 data['prediction'] = p
                 print(p)
                 # do stuff on valid forms entry

@@ -60,6 +60,12 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
+
+
+
+
+
+
 ### REST API
 
 class PointList(rest_generics.ListCreateAPIView):
