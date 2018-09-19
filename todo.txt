@@ -27,8 +27,10 @@ topics from https://docs.djangoproject.com/en/2.1/topics/
 +--- security
 +--- internalization/localization
 +--- logging
----- conditional view processing
++--- conditional view processing
 +--- performance & optimization
----- signals
++--- signals
 +--- pagination
 +--- deployment
++--- design philosophies
+

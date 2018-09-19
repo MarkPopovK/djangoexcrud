@@ -9,6 +9,7 @@ pillow = "*"
 djangorestframework = "*"
 "psycopg2-binary" = "*"
 requests = "*"
+opendota = "*"
 
 [dev-packages]
 

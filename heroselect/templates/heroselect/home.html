@@ -18,12 +18,31 @@
 
             {% endfor %}
         </div>
+
+        {% if games %}
+        <div class="col-sm">
+            <h1>Live:</h1>
+            {% for game in games %}
+            {{ game.r_name }} vs {{ game.d_name }} <br><a href='{{ game.gameurl }}'>Predict</a><br>
+            {{ game.spectators }} are watching <br>
+            Started {{ game.duration }} mins ago<br>
+            {% if game.heroes_picked == 10 %}
+            <br>
+            {% else %}
+            Picks are in progress (picked {{ game.heroes_picked }} heroes) <br>
+            {% endif %}
+            <hr>
+            {% endfor %}
+
+        </div>
+        {% endif %}
     </div>
 
-    <div class = "pl-5">
+    <div class="pl-5">
         <hr>
         <button type="submit" class="btn btn-lg btn-outline-secondary">Predict</button>
-        {% if prediction %} <h2> The probability is <strong>{{ prediction.probability }}</strong><br> {{ prediction.msg }}</h2> {% endif %}
+        {% if prediction %} <h2> The probability is <strong>{{ prediction.probability }}</strong>
+        <br> {{ prediction.msg }}</h2> {% endif %}
     </div>
 </form>
 {% endblock %}
